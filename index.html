@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Power of Compounding - Visual Experience</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="hero">
+            <h1 class="title">The Compounding Effect</h1>
+            <p class="subtitle">Watch your wealth grow exponentially through the magic of compounding</p>
+        </header>
+
+        <!-- Main Dashboard -->
+        <div class="dashboard">
+            <!-- Controls Panel -->
+            <div class="controls-panel">
+                <h2>Investment Parameters</h2>
+                
+                <div class="control-group">
+                    <label for="principal">Initial Investment ($)</label>
+                    <input type="range" id="principal" min="1000" max="100000" value="10000" step="1000">
+                    <span class="value" id="principal-value">$10,000</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="rate">Annual Interest Rate (%)</label>
+                    <input type="range" id="rate" min="1" max="30" value="8" step="0.5">
+                    <span class="value" id="rate-value">8%</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="years">Time Period (Years)</label>
+                    <input type="range" id="years" min="1" max="50" value="20" step="1">
+                    <span class="value" id="years-value">20 years</span>
+                </div>
+
+                <div class="control-group">
+                    <label for="compound">Compounding Frequency</label>
+                    <select id="compound">
+                        <option value="1">Annually</option>
+                        <option value="2">Semi-annually</option>
+                        <option value="4">Quarterly</option>
+                        <option value="12" selected>Monthly</option>
+                        <option value="365">Daily</option>
+                    </select>
+                </div>
+
+                <div class="control-group">
+                    <label for="monthlyContribution">Monthly Contribution ($)</label>
+                    <input type="range" id="monthlyContribution" min="0" max="5000" value="500" step="50">
+                    <span class="value" id="contribution-value">$500</span>
+                </div>
+            </div>
+
+            <!-- Visualization Area -->
+            <div class="visualization">
+                <!-- Big Numbers Display -->
+                <div class="big-numbers">
+                    <div class="number-display">
+                        <div class="number-label">Final Amount</div>
+                        <div class="big-number" id="final-amount">$492,101</div>
+                    </div>
+                    <div class="number-display">
+                        <div class="number-label">Total Contributions</div>
+                        <div class="big-number" id="total-contributions">$130,000</div>
+                    </div>
+                    <div class="number-display">
+                        <div class="number-label">Interest Earned</div>
+                        <div class="big-number highlight" id="interest-earned">$362,101</div>
+                    </div>
+                </div>
+
+                <!-- Chart Container -->
+                <div class="chart-container">
+                    <canvas id="compoundChart"></canvas>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-section">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                    <div class="progress-labels">
+                        <span>Year 0</span>
+                        <span id="current-year">Year 20</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Statistics Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon">📈</div>
+                <div class="stat-value" id="growth-multiple">4.9x</div>
+                <div class="stat-label">Growth Multiple</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">💰</div>
+                <div class="stat-value" id="monthly-growth">$1,368</div>
+                <div class="stat-label">Avg Monthly Growth</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">⚡</div>
+                <div class="stat-value" id="compound-power">278%</div>
+                <div class="stat-label">Compound Advantage</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-value" id="effective-rate">8.3%</div>
+                <div class="stat-label">Effective Rate</div>
+            </div>
+        </div>
+
+        <!-- Particle Canvas for Effects -->
+        <canvas id="particle-canvas"></canvas>
+    </div>
+
+    <!-- Money Rain Effect -->
+    <div class="money-rain" id="money-rain"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
