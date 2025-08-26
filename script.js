@@ -7,8 +7,7 @@ class CompoundingVisualizer {
             principal: 10000,
             rate: 8,
             years: 20,
-            compound: 12,
-            monthlyContribution: 500
+            compound: 12
         };
         
         this.init();
@@ -61,15 +60,6 @@ class CompoundingVisualizer {
             this.triggerSelectEffect(e.target);
         });
 
-        // Monthly contribution slider
-        const contributionSlider = document.getElementById('monthlyContribution');
-        const contributionValue = document.getElementById('contribution-value');
-        contributionSlider.addEventListener('input', (e) => {
-            this.currentValues.monthlyContribution = parseInt(e.target.value);
-            contributionValue.textContent = `$${this.formatNumber(this.currentValues.monthlyContribution)}`;
-            this.calculate();
-            this.triggerSliderEffect(e.target);
-        });
 
         // Stat card hover effects
         document.querySelectorAll('.stat-card').forEach(card => {
@@ -95,33 +85,25 @@ class CompoundingVisualizer {
     }
 
     calculate() {
-        const { principal, rate, years, compound, monthlyContribution } = this.currentValues;
+        const { principal, rate, years, compound } = this.currentValues;
         
-        // Calculate compound interest with monthly contributions
-        let balance = principal;
-        const monthlyRate = (rate / 100) / 12;
-        const totalMonths = years * 12;
+        // Calculate compound interest formula: A = P(1 + r/n)^(nt)
+        const n = compound; // compounding frequency
+        const r = rate / 100; // annual interest rate
+        const t = years; // time in years
+        
+        // Generate data points for each year
         const data = [];
-        
-        // Calculate month by month
-        for (let month = 0; month <= totalMonths; month++) {
-            if (month > 0) {
-                // Add monthly contribution
-                balance += monthlyContribution;
-                // Apply monthly compound interest
-                balance *= (1 + monthlyRate);
-            }
-            
-            if (month % 12 === 0) { // Record yearly values
-                data.push({
-                    year: month / 12,
-                    amount: balance
-                });
-            }
+        for (let year = 0; year <= years; year++) {
+            const amount = principal * Math.pow((1 + r/n), n * year);
+            data.push({
+                year: year,
+                amount: amount
+            });
         }
 
-        const finalAmount = balance;
-        const totalContributions = principal + (monthlyContribution * totalMonths);
+        const finalAmount = data[data.length - 1].amount;
+        const totalContributions = principal; // Only initial investment
         const interestEarned = finalAmount - totalContributions;
         
         // Update display with animations
@@ -184,18 +166,18 @@ class CompoundingVisualizer {
     }
 
     updateStatistics(finalAmount, totalContributions, interestEarned) {
-        const { principal, rate, years, monthlyContribution } = this.currentValues;
+        const { principal, rate, years } = this.currentValues;
         
         // Growth multiple
         const growthMultiple = finalAmount / totalContributions;
         this.animateStatChange('growth-multiple', `${growthMultiple.toFixed(1)}x`);
         
-        // Average monthly growth
-        const monthlyGrowth = interestEarned / (years * 12);
-        this.animateStatChange('monthly-growth', `$${this.formatNumber(Math.round(monthlyGrowth))}`);
+        // Average yearly growth
+        const yearlyGrowth = interestEarned / years;
+        this.animateStatChange('monthly-growth', `$${this.formatNumber(Math.round(yearlyGrowth))}`);
         
         // Compound advantage (vs simple interest)
-        const simpleInterest = totalContributions * (1 + (rate / 100) * years);
+        const simpleInterest = principal * (1 + (rate / 100) * years);
         const compoundAdvantage = ((finalAmount - simpleInterest) / simpleInterest) * 100;
         this.animateStatChange('compound-power', `${Math.max(0, compoundAdvantage).toFixed(0)}%`);
         
