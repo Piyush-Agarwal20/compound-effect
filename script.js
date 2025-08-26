@@ -137,7 +137,9 @@ class CompoundingVisualizer {
         this.animateNumberChange('interest-earned', interestEarned);
         
         // Trigger excitement effects for large numbers
-        if (interestEarned > 1000000) {
+        if (interestEarned > 1000000000) {
+            this.triggerBillionaireEffect();
+        } else if (interestEarned > 1000000) {
             this.triggerMillionaireEffect();
         }
     }
@@ -365,6 +367,22 @@ class CompoundingVisualizer {
         }
     }
 
+    triggerBillionaireEffect() {
+        // Create massive explosion effect
+        this.createMegaExplosion();
+        
+        // Show achievement message
+        this.showAchievement('💎 BILLIONAIRE! 💎<br/>🚀 TO THE MOON! 🚀');
+        
+        // Extreme money rain
+        for (let i = 0; i < 150; i++) {
+            setTimeout(() => this.createMoneyParticle(), i * 30);
+        }
+        
+        // Add fireworks
+        this.createFireworks();
+    }
+
     createExplosion() {
         const colors = ['#ffd700', '#ffed4e', '#ff6b6b', '#4ecdc4', '#45b7d1'];
         
@@ -377,6 +395,77 @@ class CompoundingVisualizer {
                 );
             }, i * 20);
         }
+    }
+
+    createMegaExplosion() {
+        const colors = ['#ffd700', '#ffed4e', '#ff6b6b', '#4ecdc4', '#45b7d1', '#9b59b6', '#e74c3c', '#2ecc71'];
+        
+        // Much more intense explosion for billionaires
+        for (let i = 0; i < 300; i++) {
+            setTimeout(() => {
+                this.createSparkles(
+                    Math.random() * window.innerWidth,
+                    Math.random() * window.innerHeight,
+                    colors[Math.floor(Math.random() * colors.length)]
+                );
+            }, i * 10);
+        }
+        
+        // Screen shake effect
+        document.body.style.animation = 'shake 0.5s ease-in-out 3';
+        setTimeout(() => {
+            document.body.style.animation = '';
+        }, 1500);
+    }
+
+    createFireworks() {
+        const fireworkPositions = [
+            { x: window.innerWidth * 0.2, y: window.innerHeight * 0.3 },
+            { x: window.innerWidth * 0.8, y: window.innerHeight * 0.3 },
+            { x: window.innerWidth * 0.5, y: window.innerHeight * 0.2 },
+            { x: window.innerWidth * 0.3, y: window.innerHeight * 0.5 },
+            { x: window.innerWidth * 0.7, y: window.innerHeight * 0.5 }
+        ];
+        
+        fireworkPositions.forEach((pos, index) => {
+            setTimeout(() => {
+                for (let i = 0; i < 20; i++) {
+                    this.createFireworkBurst(pos.x, pos.y);
+                }
+            }, index * 500);
+        });
+    }
+
+    createFireworkBurst(x, y) {
+        const colors = ['#ffd700', '#ff6b6b', '#4ecdc4', '#9b59b6', '#e74c3c', '#2ecc71', '#f39c12'];
+        const burst = document.createElement('div');
+        burst.style.position = 'fixed';
+        burst.style.left = x + 'px';
+        burst.style.top = y + 'px';
+        burst.style.width = '8px';
+        burst.style.height = '8px';
+        burst.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        burst.style.borderRadius = '50%';
+        burst.style.pointerEvents = 'none';
+        burst.style.zIndex = '1000';
+        burst.style.boxShadow = '0 0 15px currentColor';
+        
+        document.body.appendChild(burst);
+        
+        anime({
+            targets: burst,
+            scale: [0, 2, 0],
+            opacity: [1, 1, 0],
+            translateX: (Math.random() - 0.5) * 300,
+            translateY: (Math.random() - 0.5) * 300,
+            duration: 2000,
+            easing: 'easeOutQuart',
+            complete: () => {
+                if (burst.parentNode) {
+                    burst.parentNode.removeChild(burst);
+                }
+            }
+        });
     }
 
     createSparkles(x, y, color = '#ffd700') {
