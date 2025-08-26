@@ -9,28 +9,36 @@ body {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;
     overflow-x: hidden;
+    overflow-y: auto;
     position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
 
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 10px;
     position: relative;
     z-index: 1;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header Styles */
 .hero {
     text-align: center;
-    padding: 60px 20px;
+    padding: 20px;
     position: relative;
+    flex-shrink: 0;
 }
 
 .title {
-    font-size: 4rem;
+    font-size: 2.5rem;
     font-weight: 800;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     background: linear-gradient(45deg, #ffd700, #ffed4e);
     -webkit-background-clip: text;
     background-clip: text;
@@ -45,7 +53,7 @@ body {
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-size: 1rem;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
@@ -54,10 +62,12 @@ body {
 /* Dashboard Layout */
 .dashboard {
     display: grid;
-    grid-template-columns: 400px 1fr;
-    gap: 30px;
-    margin-bottom: 40px;
+    grid-template-columns: 350px 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
     animation: slideInUp 1s ease-out;
+    flex: 1;
+    min-height: 0;
 }
 
 @keyframes slideInUp {
@@ -75,20 +85,21 @@ body {
 .controls-panel {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: 15px;
+    padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
 }
 
 .controls-panel h2 {
-    margin-bottom: 30px;
-    font-size: 1.8rem;
+    margin-bottom: 20px;
+    font-size: 1.4rem;
     color: #ffd700;
 }
 
 .control-group {
-    margin-bottom: 25px;
+    margin-bottom: 15px;
 }
 
 .control-group label {
@@ -158,24 +169,28 @@ select option {
 .visualization {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 30px;
+    border-radius: 15px;
+    padding: 20px;
     border: 1px solid rgba(255, 255, 255, 0.1);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
 }
 
 /* Big Numbers Display */
 .big-numbers {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    margin-bottom: 30px;
+    gap: 15px;
+    margin-bottom: 15px;
+    flex-shrink: 0;
 }
 
 .number-display {
     text-align: center;
-    padding: 20px;
-    border-radius: 15px;
+    padding: 15px 10px;
+    border-radius: 10px;
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     transition: transform 0.3s ease;
@@ -193,7 +208,7 @@ select option {
 }
 
 .big-number {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     font-weight: 800;
     color: white;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
@@ -212,17 +227,20 @@ select option {
 
 /* Chart Container */
 .chart-container {
-    height: 400px;
-    margin-bottom: 30px;
+    height: 250px;
+    margin-bottom: 15px;
     position: relative;
-    border-radius: 15px;
+    border-radius: 10px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.05);
+    flex: 1;
+    min-height: 200px;
 }
 
 /* Progress Section */
 .progress-section {
-    margin-top: 20px;
+    margin-top: 10px;
+    flex-shrink: 0;
 }
 
 .progress-bar {
@@ -251,10 +269,11 @@ select option {
 /* Statistics Grid */
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 10px;
     animation: fadeInUp 1.2s ease-out 0.5s both;
+    flex-shrink: 0;
 }
 
 @keyframes fadeInUp {
@@ -271,8 +290,8 @@ select option {
 .stat-card {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 25px;
+    border-radius: 10px;
+    padding: 15px 10px;
     text-align: center;
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
@@ -287,8 +306,8 @@ select option {
 }
 
 .stat-icon {
-    font-size: 2.5rem;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
     animation: bounce 2s infinite;
 }
 
@@ -299,15 +318,15 @@ select option {
 }
 
 .stat-value {
-    font-size: 2rem;
+    font-size: 1.3rem;
     font-weight: 800;
     color: #ffd700;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .stat-label {
-    font-size: 1rem;
+    font-size: 0.8rem;
     opacity: 0.9;
 }
 
@@ -358,7 +377,7 @@ select option {
 @media (max-width: 1200px) {
     .dashboard {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 15px;
     }
     
     .controls-panel {
@@ -367,6 +386,11 @@ select option {
     
     .visualization {
         order: 1;
+    }
+    
+    .container {
+        height: auto;
+        min-height: 100vh;
     }
 }
 
