@@ -3,23 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Power of Compounding - Visual Experience</title>
+    
+    <!-- Primary Meta Tags -->
+    <title>Compound Interest Calculator - Interactive Visual Growth Experience</title>
+    <meta name="title" content="Compound Interest Calculator - Interactive Visual Growth Experience">
+    <meta name="description" content="Watch your money grow exponentially with our stunning interactive compound interest calculator. Visualize the power of compound interest over 100 years with animated charts and real-time calculations.">
+    <meta name="keywords" content="compound interest calculator, investment calculator, financial planning, compound growth, investment visualization, wealth building, financial calculator, exponential growth">
+    <meta name="author" content="Compound Works">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://compounding-works.com/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://compounding-works.com/">
+    <meta property="og:title" content="Compound Interest Calculator - Interactive Visual Growth Experience">
+    <meta property="og:description" content="Watch your money grow exponentially with our stunning interactive compound interest calculator. Visualize the power of compound interest over 100 years.">
+    <meta property="og:image" content="https://compounding-works.com/og-image.jpg">
+    <meta property="og:site_name" content="Compound Works">
+    <meta property="og:locale" content="en_US">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://compounding-works.com/">
+    <meta property="twitter:title" content="Compound Interest Calculator - Interactive Visual Growth Experience">
+    <meta property="twitter:description" content="Watch your money grow exponentially with our stunning interactive compound interest calculator. Visualize the power of compound interest over 100 years.">
+    <meta property="twitter:image" content="https://compounding-works.com/twitter-image.jpg">
+    <meta name="twitter:creator" content="@compoundworks">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#667eea">
+    <meta name="msapplication-TileColor" content="#667eea">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="script.js" as="script">
+    
+    <!-- Stylesheets -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- External Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "Compound Interest Calculator",
+        "description": "Interactive compound interest calculator with visual growth animations and real-time calculations",
+        "url": "https://compounding-works.com/",
+        "applicationCategory": "FinanceApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        },
+        "featureList": [
+            "Interactive compound interest calculator",
+            "Visual growth animations",
+            "100-year projection capability",
+            "Multiple compounding frequencies",
+            "Real-time calculations",
+            "Responsive design"
+        ],
+        "creator": {
+            "@type": "Organization",
+            "name": "Compound Works"
+        }
+    }
+    </script>
 </head>
 <body>
     <div class="container">
         <!-- Header -->
         <header class="hero">
             <h1 class="title">The Compounding Effect</h1>
-            <p class="subtitle">Watch your wealth grow exponentially through the magic of compounding</p>
+            <p class="subtitle">Watch your wealth grow exponentially through the magic of compound interest. Interactive calculator with visual animations showing growth over 100 years.</p>
         </header>
 
         <!-- Main Dashboard -->
         <div class="dashboard">
             <!-- Controls Panel -->
-            <div class="controls-panel">
+            <section class="controls-panel" aria-label="Investment Parameters">
                 <h2>Investment Parameters</h2>
                 
                 <div class="control-group">
@@ -51,10 +123,10 @@
                     </select>
                 </div>
 
-            </div>
+            </section>
 
             <!-- Visualization Area -->
-            <div class="visualization">
+            <section class="visualization" aria-label="Investment Growth Visualization">
                 <!-- Big Numbers Display -->
                 <div class="big-numbers">
                     <div class="number-display">
@@ -73,7 +145,7 @@
 
                 <!-- Chart Container -->
                 <div class="chart-container">
-                    <canvas id="compoundChart"></canvas>
+                    <canvas id="compoundChart" aria-label="Compound Interest Growth Chart" role="img"></canvas>
                 </div>
 
                 <!-- Progress Bar -->
@@ -86,11 +158,11 @@
                         <span id="current-year">Year 20</span>
                     </div>
                 </div>
-            </div>
+            </section>
         </div>
 
         <!-- Statistics Cards -->
-        <div class="stats-grid">
+        <section class="stats-grid" aria-label="Investment Statistics">
             <div class="stat-card">
                 <div class="stat-icon">📈</div>
                 <div class="stat-value" id="growth-multiple">4.9x</div>
@@ -111,7 +183,7 @@
                 <div class="stat-value" id="effective-rate">8.3%</div>
                 <div class="stat-label">Effective Rate</div>
             </div>
-        </div>
+        </section>
 
         <!-- Particle Canvas for Effects -->
         <canvas id="particle-canvas"></canvas>
